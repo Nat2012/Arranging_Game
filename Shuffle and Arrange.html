@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Shuffle and Arrange.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="Shuffle and arrange.js"></script>
+    <title>Arranging Game</title>
+</head>
+<body>
+    <header>Arranging Game</header>
+    <div class="Instructions">Instructions:
+        <ol>
+            <li>Welcome to the arranging Game</li>
+            <li>There are a set of words in the first list</li>
+            <li>Arrange them alphabetically in the other list</li>
+            <li>Click Submit to Check</li>
+            <li>Have fun!</li>
+        </ol>
+    </div>
+    <div class="words">
+        <div id="1st"></div>
+        <div id="2nd"></div>
+        <div id="3rd"></div>
+        <div id="4th"></div>
+        <div id="5th"></div>
+        <div id="6th"></div>
+        <div id="7th"></div>
+    </div>
+    <div class="button">
+        <button id="reshuffle" onclick="reshuffle()">Re-shuffle</button>
+    </div>
+    <div class="inputforusers">
+        <input id="1" type="text">
+        <input id="2" type="text">
+        <input id="3" type="text">
+        <input id="4" type="text">
+        <input id="5" type="text">
+        <input id="6" type="text">             
+        <input id="7" type="text">
+    </div>
+    <div class="button2">
+        <button type="submit" id="check" onclick="submit()">Submit</button>
+    </div>
+    <div id="answer"></div>
+</body>
+<script>
+    let wordArr =  ["Babble" , "French" , "Alto" , "Alliance" , "Moon" , "Fill" , "Code" , "Bow" , "Shut" , "Volcano" , "Chill" , "Chilli" , "Bandit" , "Bingo" , "Blue" , "Pain"]
+    reshuffle()
+    function shuffle(array) {
+            let shuffledarr = array.sort(() => Math.random() - 0.5);
+            return shuffledarr;
+        }
+   function arrange(words) {
+            let splittedwords = words.split(" ");
+            let arrangedwords = splittedwords.sort();
+            return arrangedwords.toString();
+}
+        let word1 = document.getElementById("1st").innerText;
+        let word2 = document.getElementById("2nd").innerText;
+        let word3 = document.getElementById("3rd").innerText;
+        let word4 = document.getElementById("4th").innerText;
+        let word5 = document.getElementById("5th").innerText;
+        let word6 = document.getElementById("6th").innerText;
+        let word7 = document.getElementById("7th").innerText;
+        let words = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + word6 + " " + word7
+
+    function reshuffle() {
+        let shuffledword = shuffle(wordArr)
+        document.getElementById("1st").innerText = shuffledword[0]
+        document.getElementById("2nd").innerText = shuffledword[1]
+        document.getElementById("3rd").innerText = shuffledword[2]
+        document.getElementById("4th").innerText = shuffledword[3]
+        document.getElementById("5th").innerText = shuffledword[4]
+        document.getElementById("6th").innerText = shuffledword[5]
+        document.getElementById("7th").innerText = shuffledword[6]
+        
+    }
+
+    function submit() {
+        let submittedwords = ""
+
+        for (let i = 1; i < 8; i++) {
+            if (i == 7) {
+                submittedwords += document.getElementById(i.toString()).value
+            }
+            else{
+                submittedwords += document.getElementById(i.toString()).value
+                submittedwords += ","
+            }
+        }
+        let arrangewords = arrange(words);
+        if(arrangewords == submittedwords){
+            let ans = "Correct"
+            document.getElementById("answer").innerText = ans;
+            $(document.getElementById("answer")).css("color", "green")
+        }
+        else{
+            let ans = "Wrong"
+            document.getElementById("answer").innerText = ans;
+            $(document.getElementById("answer")).css("color", "red")
+        }
+
+    }
+</script>
+</html>
