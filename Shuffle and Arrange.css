@@ -68,3 +68,15 @@ input{
     font-weight: bolder;
     margin-top: 70px;
 }
+
+@media only screen and (max-width: 600px) {
+    input{
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        font-size: xx-small;
+        font-style: normal;
+        font-weight: bold;
+    }
+  }
+  
